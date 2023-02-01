@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: hello
-        image: yoskidavid/demoapp:1.0
+        image: yoskidavid/demoapp:3.0
         imagePullPolicy: IfNotPresent        
         ports:
         - containerPort: 8080

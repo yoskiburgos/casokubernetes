@@ -14,10 +14,10 @@ spec:
     spec:
       containers:
       - name: hello
-        image: yoskidavid/demoapp:2.0
+        image: yoskidavid/demoapp:4.0
         imagePullPolicy: IfNotPresent        
         ports:
-        - containerPort: 8080
+        - containerPort: 4200
         resources:
           requests:
             memory: "64Mi"

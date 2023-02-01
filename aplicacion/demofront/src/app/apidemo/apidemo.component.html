@@ -1,0 +1,28 @@
+
+<div class="container" >
+    <div class="row">
+        <div class="col-12">
+            <h1> Listado de Personas  </h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <table class="table table-hover table-bordered table-sm">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nombres</th>
+                        <th scope="col">Edad</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let persona of personas; let item= index" >
+                        <th scope="row">{{item+1}}</th>
+                        <th scope="row">{{persona.nombre}}</th>
+                        <th scope="row">{{persona.edad}}</th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
