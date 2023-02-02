@@ -1,18 +1,13 @@
 const express = require('express');
 var createError = require('http-errors');
-//var path = require('path');
-//var cookieParser = require('cookie-parser');
-//var logger = require('morgan');
 const cors = require('cors');
-
-//const config = require('./config');
-
-
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 
 const app = express();
+const corsOrigin = process.env.CORS_ORIGIN || '*';
+
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -31,39 +26,39 @@ app.use(function (err, req, res, next) {
   res.status(500).send('Algun enlace roto!')
 })
 
-/*
-app.use(cors({
-  origin: true, // "true" will copy the domain of the request back
-                // to the reply. If you need more control than this
-                // use a function.
 
-  credentials: true, // This MUST be "true" if your endpoint is
-                     // authenticated via either a session cookie
-                     // or Authorization header. Otherwise the
-                     // browser will block the response.
+app.use(function (request, response, next) {
+  response.header("Access-Control-Allow-Origin", "*");
+  response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
-  methods: 'POST,GET,PUT,OPTIONS,DELETE' // Make sure you're not blocking
-                                         // pre-flight OPTIONS requests
-}));
-*/
-
-
+app.use(cors());
 
 /*
-var originsWhitelist = [
-  'http://localhost:4200'
-];
-var corsOptions = {
-  origin: function(origin, callback){
-        var isWhitelisted = originsWhitelist.indexOf(origin) !== -1;
-        callback(null, isWhitelisted);
-  },
-  credentials:true
-}
-//here is the magic
-app.use(cors(corsOptions));
-*/
+app.use(cors({ origin: corsOrigin }));
 
+
+app.use((req, res, next) => {
+  res.set({
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "*",
+      "Access-Control-Allow-Headers": "'Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token'",
+  });
+
+  next();
+});
+
+
+app.use(function (req, res, next) {
+  //Enabling CORS
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, x-client-key, x-client-token, x-client-secret, Authorization");
+    next();
+  });
+*/
+/*
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
@@ -72,14 +67,7 @@ app.use((req, res, next) => {
   res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
   next();
 });
-
-app.all('/*', function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  res.header("Access-Control-Allow-Methods", "GET, POST","PUT");
-  next();
-
-});
+*/
 
 module.exports = app;
 
