@@ -17,7 +17,7 @@ spec:
         image: yoskidavid/demoapp:4.0
         imagePullPolicy: IfNotPresent        
         ports:
-        - containerPort: 4200
+        - containerPort: 80
         resources:
           requests:
             memory: "64Mi"

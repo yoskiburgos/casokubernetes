@@ -10,7 +10,7 @@ spec:
   - host: localhost
     http:
       paths:
-      - path: /back
+      - path: /
         pathType: Exact
         backend:
           service:
@@ -21,7 +21,7 @@ spec:
   - host: localhost
     http:
       paths:
-      - path: /front
+      - path: /
         pathType: Exact
         backend:
           service:
