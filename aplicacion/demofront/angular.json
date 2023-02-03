@@ -17,6 +17,10 @@
             "outputPath": "dist/demofront",
             "index": "src/index.html",
             "main": "src/main.ts",
+
+
+            
+
             "polyfills": [
               "zone.js"
             ],
@@ -61,16 +65,22 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "demofront:build:production"
+              "browserTarget": "demofront:build:production",
+             
             },
             "development": {
-              "browserTarget": "demofront:build:development"
+              "browserTarget": "demofront:build:development",
+             
             }
           },
 
 
           "options": {
-            "proxyConfig": "proxy.conf.json"
+           
+
+            "browserTarget": "demofront:build"
+          
+
             },
 
           "defaultConfiguration": "development"
@@ -85,6 +95,9 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
+
+            
+
             "polyfills": [
               "zone.js",
               "zone.js/testing"

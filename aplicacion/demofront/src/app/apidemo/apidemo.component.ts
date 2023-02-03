@@ -1,25 +1,3 @@
-/*
-import { Component } from '@angular/core';
-import { PersonaService } from './services/persona.service';
-@Component({
-  selector: 'app-apidemo',
-  templateUrl: './apidemo.component.html',
-  styleUrls: ['./apidemo.component.css']
-})
-export class ApidemoComponent {
-  title = 'client';
-  public personas : Array<any> = []
-
-  constructor(private personaService: PersonaService){
-    this.personaService.getPersonas().subscribe((resp:any) => {
-      console.log('----------------------------------->'+resp)
-      this.personas = resp
-    })
-  }
-}
-*/
-
-
 import { Component, OnInit } from '@angular/core';
 import { Persona } from 'src/app/apidemo/model/Persona';
 import { PersonaService } from 'src/app/apidemo/services/persona.service';
@@ -42,18 +20,13 @@ export class ApidemoComponent implements OnInit {
   }
 
   consultarAnimes() {
-    console.log('Consultando Personas...........');
+   // console.log('Consultando Personas...........');
 
-    this.animesService.consultarPersona().subscribe((response:any) => {
-      console.log("Salida-------------------"+response);
+    this.animesService.consultarPersona().subscribe(response => {
+     // console.log("Salida-------------------"+response);
       this.personas = response;
       
-      /*this.collectionSize = this.personas.length;
-
-      this.personas = this.personas
-            .map((persona, i) => ({counter: i + 1, ...persona}))
-            .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
-      */
+   
 
       });
   }

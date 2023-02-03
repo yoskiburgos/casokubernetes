@@ -1,16 +1,9 @@
-FROM node:10.16.3 AS build-env
-
+# Stage 1
+FROM node:latest as node
 WORKDIR /app
-
-COPY . ./
-
+COPY . .
 RUN npm install
-RUN npm run build
-
-FROM nginx:1.13.9-alpine
-
-COPY --from=build-env /app/dist/proyect-name/ /usr/share/nginx/html
-
-COPY ./nginx.conf /etc/nginx/conf.d/default.conf
-
-CMD ["nginx", "-g", "daemon off;"]
+RUN npm run build --prod
+# Stage 2
+FROM nginx:alpine
+COPY --from=node /app/dist/demofront /usr/share/nginx/html
