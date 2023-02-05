@@ -8,7 +8,8 @@ import {HttpClient, HttpHeaders} from '@angular/common/http'
   providedIn: 'root'
 })
 export class PersonaService {
-  url = 'http://localhost:8080/usuarios/obtener';
+  //url = 'http://localhost:8080/usuarios/obtener';
+  url = '/usuarios/obtener';
   constructor(private http: HttpClient) { 
     console.log('Servicio de Personas...')
   }
